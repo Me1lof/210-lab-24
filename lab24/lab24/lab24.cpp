@@ -13,7 +13,7 @@ const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
 int select_goat(const set<Goat>& trip);
 void delete_goat(set<Goat>& trip);
-void add_goat(set<Goat>& trip, string names[], string colors[]);
+void add_goat(set<Goat>& trip, string names[], string colors[], int name_count, int color_count);
 void display_trip(const set<Goat> trip);
 int main_menu();
 
@@ -30,6 +30,10 @@ int main() {
     }
     fin.close();
 
+    if (name_count == 0) {
+        cerr << "Error: NO names loaded from name.txt." << endl;
+    }
+
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
     int color_count = 0;
@@ -37,6 +41,10 @@ int main() {
         color_count++;
     }
     fin1.close();
+
+    if (color_count == 0) {
+        cerr << "Error: No colors loaded from colors.txt" << endl;
+    }
 
     set<Goat>trip;
 
@@ -88,13 +96,13 @@ void add_goat(set<Goat>& trip, string names[], string colors[], int name_count, 
 
     int age = rand() % (MAX_AGE + 1);
 
+    
+
     Goat new_goat(name, age, color);
     auto result = trip.insert(new_goat);
 
     if (result.second) { 
         cout << "Added goat: " << name << " (" << age << ", " << color << ")" << endl;
-    } else {
-        cout << "Duplicate goat: " << name << " (" << age << ", " << color << ") not added." << endl;
     }
 }
 
