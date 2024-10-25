@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <set>
+#include <ctime>
 #include "Goat.h"
 using namespace std;
 

@@ -27,7 +27,13 @@ public:
     string get_color() const { return color; }
 
     bool operator<(const Goat& other) const {
-        return this->name < other.name;
+        if (name != other.name) return name < other.name;
+        if (age != other.age) return age < other.age;
+        return color < other.color;
+    }
+
+    bool operator==(const Goat& other) const {
+        return name == other.name && age == other.age && color == other.color;
     }
 };
 
