@@ -4,16 +4,16 @@
 
 #include <iostream>
 #include <fstream>
-#include <list>
+#include <set>
 #include "Goat.h"
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
-int select_goat(const list<Goat>& trip);
-void delete_goat(list<Goat>& trip);
-void add_goat(list<Goat>& trip, string names[], string colors[]);
-void display_trip(const list<Goat> trip);
+int select_goat(const set<Goat>& trip);
+void delete_goat(set<Goat>& trip);
+void add_goat(set<Goat>& trip, string names[], string colors[]);
+void display_trip(const set<Goat> trip);
 int main_menu();
 
 int main() {
@@ -33,7 +33,7 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    list<Goat>trip;
+    set<Goat>trip;
 
     while (again) {
         int choice = main_menu();
