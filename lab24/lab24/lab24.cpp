@@ -62,19 +62,20 @@ int main() {
 
 int main_menu() {
     int choice;
-    cout << "*** GOAT MANAGER 3001 ***" << endl;
-    cout << "[1] Add a goat" << endl;
-    cout << "[2] Delete a goat" << endl;
-    cout << "[3] List goats" << endl;
-    cout << "[4] Quit" << endl;
-    cout << "Choice ----> ";
-    cin >> choice;
-    return choice;
+        do {
+            cout << "*** GOAT MANAGER 3001 ***" << endl;
+            cout << "[1] Add a goat" << endl;
+            cout << "[2] Delete a goat" << endl;
+            cout << "[3] List goats" << endl;
+            cout << "[4] Quit" << endl;
+            cout << "Choice ----> ";
+            cin >> choice;
 
-    while (choice < 1 || choice > 4) {
-        cout << "Invalid choice. Please enter a number between 1 and 4: ";
-        cin >> choice;
-    }
+            if (choice < 1 || choice > 4) {
+                cout << "Invalid choice. Please enter a number between 1 and 4." << endl;
+            }
+        } while (choice < 1 || choice > 4);
+        return choice;
 }
 
 void add_goat(set<Goat>& trip, string names[], string colors[]) {
@@ -88,6 +89,8 @@ void add_goat(set<Goat>& trip, string names[], string colors[]) {
 
     if (result.second) { 
         cout << "Added goat: " << name << " (" << age << ", " << color << ")" << endl;
+    } else {
+        cout << "Duplicate goat: " << name << " (" << age << ", " << color << ") not added." << endl;
     }
 }
 
