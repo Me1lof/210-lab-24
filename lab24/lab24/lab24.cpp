@@ -24,14 +24,18 @@ int main() {
 
     ifstream fin("names.txt");
     string names[SZ_NAMES];
-    int i = 0;
-    while (fin >> names[i++]);
+    int name_count = 0;
+    while (name_count < SZ_NAMES && fin >> names[name_count]) {
+        name_count++;
+    }
     fin.close();
 
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
-    i = 0;
-    while (fin1 >> colors[i++]);
+    int color_count = 0;
+    while (color_count < SZ_COLORS && fin1 >> colors[color_count]) {
+        color_count++;
+    }
     fin1.close();
 
     set<Goat>trip;
@@ -40,7 +44,7 @@ int main() {
         int choice = main_menu();
         switch (choice) {
         case 1:
-            add_goat(trip, names, colors);
+            add_goat(trip, names, colors, name_count, color_count);
             break;
         case 2:
             delete_goat(trip);
@@ -78,9 +82,9 @@ int main_menu() {
         return choice;
 }
 
-void add_goat(set<Goat>& trip, string names[], string colors[]) {
-    string name = names[rand() % SZ_NAMES];
-    string color = colors[rand() % SZ_COLORS];
+void add_goat(set<Goat>& trip, string names[], string colors[], int name_count, int color_count) {
+    string name = names[rand() % name_count];
+    string color = colors[rand() % color_count];
 
     int age = rand() % (MAX_AGE + 1);
 
